@@ -1,15 +1,11 @@
 package com.apigcc.core.http;
 
-import com.apigcc.core.Context;
 import com.apigcc.core.resolver.TypeResolvers;
 import com.apigcc.core.resolver.Types;
-import com.apigcc.core.schema.Group;
-import com.apigcc.core.schema.Node;
 import com.apigcc.core.resolver.ast.Comments;
 import com.apigcc.core.resolver.ast.Tag;
-import com.github.javaparser.resolution.declarations.ResolvedReferenceTypeDeclaration;
-import com.github.javaparser.symbolsolver.model.resolution.SymbolReference;
-import com.github.javaparser.utils.StringEscapeUtils;
+import com.apigcc.core.schema.Group;
+import com.apigcc.core.schema.Node;
 import com.google.common.base.Strings;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Getter;
@@ -52,7 +48,7 @@ public class HttpMessage extends Node {
                     errorCode.setName(contents[1]);
                 }
                 if(contents.length>2){
-                    errorCode.setName(contents[2]);
+                    errorCode.setDescription(contents[2]);
                 }
                 response.getErrorCodes().put(contents[0],errorCode);
             }

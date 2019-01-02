@@ -9,12 +9,20 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 欢迎使用Apiggs
  *
+ * @author fengyuchenglun
+ * @version 1.0.0
  * @index 1
  */
 @RestController
 public class GreetingController {
 
+    /**
+     * The constant template.
+     */
     private static final String template = "Hello, %s!";
+    /**
+     * The Counter.
+     */
     private final AtomicLong counter = new AtomicLong();
 
     /**
@@ -22,7 +30,7 @@ public class GreetingController {
      * 自定义错误编码
      *
      * @param name 名称
-     * @return greeting
+     * @return greeting greeting
      * @errorCode ERROR_CODE_1 错误编码1 很长很长的描述
      * @errorCode ERROR_CODE_2 错误编码2 很长很长的描述
      * @errorCode ERROR_CODE_3 错误编码3 很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述

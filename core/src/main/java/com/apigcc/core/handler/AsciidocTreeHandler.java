@@ -2,6 +2,7 @@ package com.apigcc.core.handler;
 
 import com.apigcc.core.Options;
 import com.apigcc.core.common.markup.asciidoc.AsciiDoc;
+import com.apigcc.core.http.HttpErrorCode;
 import com.apigcc.core.http.HttpMessage;
 import com.apigcc.core.http.HttpResponse;
 import com.apigcc.core.schema.Appendix;
@@ -18,10 +19,7 @@ import com.google.common.collect.Lists;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * adoc文件构建器
@@ -144,6 +142,7 @@ public class AsciidocTreeHandler implements TreeHandler {
                 }
             }, "source,HTTP");
             ntcdd(response.getCells());
+            ntcErrorCodes(response.getErrorCodes());
         }
 
     }
@@ -153,6 +152,16 @@ public class AsciidocTreeHandler implements TreeHandler {
             List<List<String>> responseTable = new ArrayList<>();
             responseTable.add(Arrays.asList("名称", "类型", "校验", "默认", "描述"));
             cells.forEach(parameter -> responseTable.add(parameter.toList()));
+            builder.table(responseTable);
+        }
+    }
+
+    private void ntcErrorCodes(Map<String,HttpErrorCode> errorCodes){
+        if (errorCodes.size()>0){
+            builder.textLine("错误编码");
+            List<List<String>> responseTable = new ArrayList<>();
+            responseTable.add(Arrays.asList("编码", "名称",  "描述"));
+            errorCodes.forEach((key,value) -> responseTable.add(Arrays.asList(value.getCode(),value.getName(),value.getDescription())));
             builder.table(responseTable);
         }
     }

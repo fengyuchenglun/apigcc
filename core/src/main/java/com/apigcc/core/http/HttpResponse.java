@@ -27,7 +27,7 @@ public class HttpResponse {
     Map<String,HttpErrorCode> errorCodes= Maps.newLinkedHashMap();
 
     public boolean isEmpty(){
-        return cells.isEmpty() && Objects.isNull(body)  && headers.isEmpty();
+        return cells.isEmpty() && Objects.isNull(body)  && headers.isEmpty() && errorCodes.isEmpty();
     }
 
     public boolean hasBody(){

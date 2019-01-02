@@ -22,7 +22,8 @@ public class ApigccTest {
     @Test
     public void testApigcc() {
         Options options = new Options()
-                .source(Paths.get("src", "test", "java","com","apigcc","example","spring","hello"))
+                //.source(Paths.get("src", "test", "java","com","apigcc","example","spring","hello"))
+                .source(Paths.get("src", "test", "java"))
                 .ignore("ResponseEntity")
                 .jar(Paths.get("src/test/resources/lib/apigcc-model-1.0-SNAPSHOT.jar"))
                 .id("apigcc")
