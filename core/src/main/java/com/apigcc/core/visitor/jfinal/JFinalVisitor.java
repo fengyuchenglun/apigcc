@@ -14,7 +14,6 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.stmt.BlockStmt;
-import com.sun.tools.internal.ws.wsdl.document.soap.SOAPUse;
 import com.sun.webkit.network.URLs;
 
 import java.rmi.server.RMIClientSocketFactory;

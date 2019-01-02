@@ -29,6 +29,7 @@ public class SpringVisitor extends NodeVisitor {
 
     @Override
     public boolean accept(CompilationUnit cu) {
+        // 如果以org.springframework开头则认为是spring框架
         return cu.getImports().stream()
                 .anyMatch(importDeclaration -> importDeclaration.getNameAsString().startsWith(PACKAGE));
     }

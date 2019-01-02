@@ -53,7 +53,9 @@ public class Comments {
 
     public static Comments of(Comment n) {
         Comments comments = new Comments();
+        // 如果是javadoc的注释
         if(n.isJavadocComment()){
+            // 解析标签
             comments.parse(n.asJavadocComment());
         }else{
             comments.setContent(n.getContent());

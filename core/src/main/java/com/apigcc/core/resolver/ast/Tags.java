@@ -10,8 +10,17 @@ public enum Tags {
      * Controller 顺序
      */
     index,
+    /**
+     * Title tags.
+     */
     title,
+    /**
+     * Description tags.
+     */
     description,
+    /**
+     * Readme tags.
+     */
     readme,
     /**
      * 响应码
@@ -32,6 +41,12 @@ public enum Tags {
      */
     value;
 
+    /**
+     * Equals boolean.
+     *
+     * @param tag the tag
+     * @return the boolean
+     */
     public boolean equals(Tag tag){
         return name().equals(tag.getName());
     }

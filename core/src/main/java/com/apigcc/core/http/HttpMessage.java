@@ -9,6 +9,7 @@ import com.apigcc.core.resolver.ast.Comments;
 import com.apigcc.core.resolver.ast.Tag;
 import com.github.javaparser.resolution.declarations.ResolvedReferenceTypeDeclaration;
 import com.github.javaparser.symbolsolver.model.resolution.SymbolReference;
+import com.github.javaparser.utils.StringEscapeUtils;
 import com.google.common.base.Strings;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Getter;
@@ -42,6 +43,18 @@ public class HttpMessage extends Node {
                     response.getCells().addAll(types.getCells());
                 }
 
+            }
+            if ("errorCode".equals(tag.getName())  && !Strings.isNullOrEmpty(tag.getContent())){
+                String[] contents=tag.getContent().split("\\s+");
+                HttpErrorCode errorCode=new HttpErrorCode();
+                errorCode.setCode(contents[0]);
+                if(contents.length>1){
+                    errorCode.setName(contents[1]);
+                }
+                if(contents.length>2){
+                    errorCode.setName(contents[2]);
+                }
+                response.getErrorCodes().put(contents[0],errorCode);
             }
         }
 

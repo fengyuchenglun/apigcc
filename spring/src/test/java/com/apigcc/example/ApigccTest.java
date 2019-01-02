@@ -22,10 +22,11 @@ public class ApigccTest {
     @Test
     public void testApigcc() {
         Options options = new Options()
-                .source(Paths.get("src", "test", "java"))
+                .source(Paths.get("src", "test", "java","com","apigcc","example","spring","hello"))
                 .ignore("ResponseEntity")
                 .jar(Paths.get("src/test/resources/lib/apigcc-model-1.0-SNAPSHOT.jar"))
                 .id("apigcc")
+                .version("1.0.0")
                 .title("示例接口文档")
                 .description("示例接口文档，使用默认模板");
         Apigcc apigcc = new Apigcc(options);

@@ -44,6 +44,7 @@ public class Apigcc extends Context {
         this.tree.setDescription(options.getDescription());
         this.tree.setVersion(options.getVersion());
         this.tree.setBucket(new Bucket(options.getId()));
+        // 设置忽略类型
         this.getIgnoreTypes().addAll(options.getIgnores());
     }
 
@@ -54,7 +55,7 @@ public class Apigcc extends Context {
     private List<CompilationUnit> parseSource(){
 
         List<CompilationUnit> cus = Lists.newLinkedList();
-
+//        解析配置
         ParserConfiguration parserConfiguration = buildParserConfiguration();
         for (Path path : options.getSources()) {
             SourceRoot root = new SourceRoot(path, parserConfiguration);
@@ -79,9 +80,10 @@ public class Apigcc extends Context {
      * @return
      */
     public Apigcc lookup() {
-
+        // 解析源码之后的值
         List<CompilationUnit> cus = parseSource();
 
+        //  获得当前框架环境
         Framework framework = Framework.getCurrent(cus);
 
         for (CompilationUnit cu : cus) {
@@ -117,12 +119,13 @@ public class Apigcc extends Context {
      * @return
      */
     private ParserConfiguration buildParserConfiguration() {
+        // 设置默认值
         if (options.getSources().isEmpty()) {
             options.source(options.getProject().resolve(Options.DEFAULT_SOURCE_STRUCTURE));
         }
 
         getTypeSolver().add(new ReflectionTypeSolver());
-
+        // 依赖包
         options.getDependencies().forEach(value -> getTypeSolver().add(new JavaParserTypeSolver(value)));
         options.getJars().forEach(value -> {
             try {
@@ -131,7 +134,7 @@ public class Apigcc extends Context {
                 log.debug("read jar fail:{}",value);
             }
         });
-
+        //  设置解析配置
         ParserConfiguration parserConfiguration = new ParserConfiguration();
         parserConfiguration.setSymbolResolver(new JavaSymbolSolver(getTypeSolver()));
         return parserConfiguration;

@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 欢迎使用Apiggs
+ *
  * @index 1
  */
 @RestController
@@ -18,11 +19,17 @@ public class GreetingController {
 
     /**
      * 示例接口
+     * 自定义错误编码
+     *
      * @param name 名称
-     * @return
+     * @return greeting
+     * @errorCode ERROR_CODE_1 错误编码1 很长很长的描述
+     * @errorCode ERROR_CODE_2 错误编码2 很长很长的描述
+     * @errorCode ERROR_CODE_3 错误编码3 很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述
+     * @errorCode ERROR_CODE_4 错误编码4 很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述很长很长的描述
      */
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="apigcc") String name) {
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "apigcc") String name) {
         return new Greeting(counter.incrementAndGet(),
                 String.format(template, name));
     }
